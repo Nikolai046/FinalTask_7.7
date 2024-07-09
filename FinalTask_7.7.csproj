@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E477BE1B-9539-4CDB-9F5F-69D38135929A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FinalTask_7</RootNamespace>
-    <AssemblyName>FinalTask_7</AssemblyName>
+    <RootNamespace>FinalTask_7_7</RootNamespace>
+    <AssemblyName>FinalTask_7_7</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressSelector.cs" />
+    <Compile Include="GetFreeCourier.cs" />
+    <Compile Include="GetDeliveryTime.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="PersonDataCollect.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OtherClass.cs" />
+    <Compile Include="Delivery.cs" />
+    <Compile Include="DeliveryAddressSelector.cs" />
+    <Compile Include="HomeAddressSelector.cs" />
+    <Compile Include="NumValidationExtensions.cs" />
+    <Compile Include="PhoneValidateExtensions.cs" />
     <Compile Include="WordValidationExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
