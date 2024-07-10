@@ -25,12 +25,12 @@ namespace FinalTask_7_7
             return string.Join("\n", info.Details.Select(d => $"{d[0]}: {d[1]}"));
         }
 
-        public string GetDetail(string key)
-        {
-            var info = GetDeliveryInfo();
-            var detail = info.Details.FirstOrDefault(d => d[0] == key);
-            return detail != null ? detail[1] : null;
-        }
+        //public string GetDetail(string key)
+        //{
+        //    var info = GetDeliveryInfo();
+        //    var detail = info.Details.FirstOrDefault(d => d[0] == key);
+        //    return detail != null ? detail[1] : null;
+        //}
     }
 
 
@@ -47,7 +47,7 @@ namespace FinalTask_7_7
 
     public class HomeDelivery : Delivery
     {
-        private string[] courier = new GetFreeCourier().Result;
+        private GetFreeCourier courier = new GetFreeCourier();
 
         private DateTime DeliveryTime = new GetDeliveryTime().Result;
 
@@ -56,10 +56,10 @@ namespace FinalTask_7_7
         {
             var info = new DeliveryInfo(5);
             info.Details[0] = new string[] { "Type", "Home Delivery" };
-            info.Details[1] = new string[] { "CourierName", courier[0] };
+            info.Details[1] = new string[] { "CourierName", courier.CourierName};
             info.Details[2] = new string[] { "Adress", homeAdress };
             info.Details[3] = new string[] { "DeliveryTime", DeliveryTime.ToString() };
-            info.Details[4] = new string[] { "CostOfDelivery", courier[1] };
+            info.Details[4] = new string[] { "CostOfDelivery", courier.CostOfDelivery};
             return info;
         }
     }
@@ -97,15 +97,53 @@ namespace FinalTask_7_7
 
     public static class DeliveryFactory
     {
-        public static Delivery CreateDelivery(string type)
+        private static readonly string[] deliveryTypes = { "Доставка на дом", "PickPoint", "Доставка в магазин" };
+
+        public static Delivery CreateDelivery()
         {
-            switch (type.ToLower())
+            int selectedIndex = 0;
+            ConsoleKeyInfo keyInfo;
+
+            do
             {
-                case "home":
+                Console.Clear();
+                Console.WriteLine("Выберите тип доставки:");
+
+                for (int i = 0; i < deliveryTypes.Length; i++)
+                {
+                    if (i == selectedIndex)
+                    {
+                        Console.Write("> ");
+                    }
+                    else
+                    {
+                        Console.Write("  ");
+                    }
+                    Console.WriteLine(deliveryTypes[i]);
+                }
+
+                keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.UpArrow && selectedIndex > 0)
+                {
+                    selectedIndex--;
+                }
+                else if (keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < deliveryTypes.Length - 1)
+                {
+                    selectedIndex++;
+                }
+
+            } while (keyInfo.Key != ConsoleKey.Enter);
+
+           // string selectedType = deliveryTypes[selectedIndex];
+
+            switch (selectedIndex)
+            {
+                case 0:
                     return new HomeDelivery();
-                case "pickpoint":
+                case 1:
                     return new PickPointDelivery();
-                case "shop":
+                case 2:
                     return new ShopDelivery();
                 default:
                     throw new ArgumentException("Unknown delivery type");
@@ -113,5 +151,9 @@ namespace FinalTask_7_7
         }
     }
 
-
 }
+    
+
+
+
+

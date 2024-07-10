@@ -74,4 +74,99 @@ namespace FinalTask_7_7
             return $"+79{phonenumber}";
         }
     }
+    public class PersonDatabase
+    {
+        private List<(int Index, string[] PersonData)> people;
+        private int currentIndex;
+        public string[] SelectedUserData { get; private set; }
+
+        public PersonDatabase()
+        {
+            people = new List<(int Index, string[] PersonData)>();
+            currentIndex = 0;
+        }
+
+        public PersonDatabase(int index)
+        {
+            people = new List<(int Index, string[] PersonData)>();
+            currentIndex = 0;
+            ManageUsers();
+            SelectUserByIndex(index);
+        }
+
+        public int ManageUsers()
+        {
+            //while (true)
+            //{
+                Console.Clear();
+                Console.WriteLine("Менеджер пользователей");
+                Console.WriteLine("1. Добавить нового пользователя");
+                Console.WriteLine("2. Выбрать уже существующего пользователя по индексу");
+
+                string choice = Console.ReadLine();
+
+                if (choice == "1")
+                {
+                    AddNewUser();
+                }
+                else if (choice == "2")
+                {
+                    int selectedIndex = SelectExistingUser();
+                    if (selectedIndex != -1)
+                    {
+                        SelectUserByIndex(selectedIndex);
+                        return selectedIndex;
+                    }
+                   
+                }
+            return -1;
+            //}
+        }
+
+        private void AddNewUser()
+        {
+            PersonDataCollect personData = new PersonDataCollect();
+            people.Add((currentIndex, personData.PersonData));
+            Console.WriteLine($"Пользователь добавлен с индексом {currentIndex}");
+            currentIndex++;
+            Console.ReadKey();
+        }
+
+        private int SelectExistingUser()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Введите индекс пользователя или 'q' для возврата в основное меню:");
+                string input = Console.ReadLine();
+
+                if (input.ToLower() == "q")
+                {
+                    return -1;
+                }
+
+                if (int.TryParse(input, out int index) && index >= 0 && index < people.Count)
+                {
+                    return index;
+                }
+
+                Console.WriteLine("Неверный индекс. Нажмите любую клавишу, чтобы повторить.");
+                Console.ReadKey();
+            }
+        }
+
+        private void SelectUserByIndex(int index)
+        {
+            var user = people.Find(p => p.Index == index);
+            if (user != default)
+            {
+                SelectedUserData = user.PersonData;
+            }
+            else
+            {
+                Console.WriteLine($"Пользователь с индексом {index} не найден.");
+                SelectedUserData = null;
+            }
+        }
+    }
 }
