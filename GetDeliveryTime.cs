@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalTask_7_7
 {
@@ -32,7 +28,7 @@ namespace FinalTask_7_7
             int minute = SelectValue("минуту", 0, 50, 10); // шаг в 10 минут
 
             Result = new DateTime(year, month, day, hour, minute, 0);
-           
+
             Console.Clear();
             Console.WriteLine($"Выбранное время доставки: {Result}");
             Console.ReadLine();

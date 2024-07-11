@@ -50,6 +50,7 @@ namespace FinalTask_7_7
             Console.WriteLine("Выбранный адрес доставки добавлен :");
             Console.WriteLine(Result);
             Console.ReadLine();
+            Console.Clear();
         }
 
         private string SelectRoomNumber()

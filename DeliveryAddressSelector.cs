@@ -71,6 +71,7 @@ namespace FinalTask_7_7
             Console.WriteLine($"адрес :  {dataBase[selectedIndex, 1]}");
             Console.WriteLine($"стоимость доставки: {dataBase[selectedIndex, 2]} руб.");
             Console.ReadLine();
+            Console.Clear();
             Result = new string[] { dataBase[selectedIndex, 0], dataBase[selectedIndex, 1], dataBase[selectedIndex, 2] };
         }
 

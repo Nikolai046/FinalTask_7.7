@@ -43,12 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartCollector.cs" />
+    <Compile Include="DeliveryFactory.cs" />
+    <Compile Include="PersonDatabase.cs" />
     <Compile Include="GetFreeCourier.cs" />
     <Compile Include="GetDeliveryTime.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="PersonDataCollect.cs" />
     <Compile Include="Order.cs" />
-    <Compile Include="OtherClass.cs" />
+    <Compile Include="OrderProcessor.cs" />
     <Compile Include="Delivery.cs" />
     <Compile Include="DeliveryAddressSelector.cs" />
     <Compile Include="HomeAddressSelector.cs" />
